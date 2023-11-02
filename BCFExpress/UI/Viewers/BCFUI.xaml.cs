@@ -172,6 +172,7 @@ namespace BCFExpress.UI.Viewers
             DB.BCFUIs.Clear();
             DB.IsHighlightChecked = false;
         }
+     
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
 

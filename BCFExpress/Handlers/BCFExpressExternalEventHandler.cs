@@ -153,6 +153,38 @@ namespace BCFExpress.Handlers
             }
 
         }
+        private void UnhideRevitLinks(View view , Document doc)
+        {
+
+            //find the linked files
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            ICollection<ElementId> elementIdSet =
+              collector
+              .OfCategory(BuiltInCategory.OST_RvtLinks)
+              .OfClass(typeof(RevitLinkType))
+              .ToElementIds();
+
+            foreach (ElementId linkedFileId in elementIdSet)
+                {
+                    if (linkedFileId != null)
+                    {
+                        if (true == doc.GetElement(linkedFileId).IsHidden(view))
+                        {
+                            if (true == doc.GetElement(linkedFileId).CanBeHidden(view))
+                            {
+                                view.UnhideElements(elementIdSet);
+                                doc.Regenerate();
+                            }
+                        }
+                        else
+                        {
+                            view.HideElements(elementIdSet);
+                        }
+                    }
+                }
+               
+           
+        }
 
         private void GrowShrinkSectionBox(View3D bcfView, bool grow)
         {
@@ -426,6 +458,8 @@ namespace BCFExpress.Handlers
                 trans.Start("Set Section Box");
                 try
                 {
+                    UnhideRevitLinks(bcfView, m_app.ActiveUIDocument.Document);
+
                     var element = selectedComponent.RvtElement;
                     if (null != element)
                     {
