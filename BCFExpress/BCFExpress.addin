@@ -9,8 +9,8 @@
 		<AddInId>
 			A58BE726-9163-4FBD-A480-4FBBBB9203BE
 		</AddInId>
-		<VendorId>Dummy</VendorId>
-		<VendorDescription>Dummy</VendorDescription>
+		<VendorId>HOK</VendorId>
+		<VendorDescription>HOK Group</VendorDescription>
 		<VisibilityMode>NotVisibleWhenNoActiveDocument</VisibilityMode>
 	</AddIn>
 </RevitAddIns>
