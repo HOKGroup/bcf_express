@@ -8,10 +8,10 @@ sealed partial class Build
     protected override void OnBuildInitialized()
     {
         Configurations =
-        [
+        new string[] {
             "Release*",
             "Installer*"
-        ];
+        };
 
         InstallersMap = new()
         {
