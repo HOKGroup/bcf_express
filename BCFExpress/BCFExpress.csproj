@@ -1,223 +1,100 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6E90E68F-336D-4EA9-8999-7076C3ACBD70}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BCFExpress</RootNamespace>
-    <AssemblyName>BCFExpress</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-    <RevitVersion>2023</RevitVersion>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <TargetFramework>net48</TargetFramework>
+    <Configurations>Debug R21;Debug R22;Debug R23;Debug R24</Configurations>
+    <Configurations>$(Configurations);Release R21;Release R22;Release R23;Release R24</Configurations>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+  <PropertyGroup>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug'))">
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
-    <RevitVersion>2023</RevitVersion>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+  <PropertyGroup Condition="$(Configuration.Contains('Release'))">
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
-    <RevitVersion>2023</RevitVersion>
+    <DebugType>none</DebugType>
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release R23|AnyCPU'">
-    <OutputPath>bin\Release R23\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>latest</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <RevitVersion>2023</RevitVersion>
+  <PropertyGroup Condition="$(Configuration.Contains('R21'))">
+    <RevitVersion>2021</RevitVersion>
+    <DefineConstants>$(DefineConstants);R21</DefineConstants>
+    <DefineConstants>$(DefineConstants);R21_OR_GREATER</DefineConstants>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*-*" />
-    <PackageReference Include="Nice3point.Revit.Api.AdWindows" Version="$(RevitVersion).*-*" />
-    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*-*" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="BCFWriter\BCFWriter.cs" />
-    <Compile Include="Bcf\Bcf2\BCFZIP.cs" />
-    <Compile Include="Bcf\Bcf2\ClippingPlane.cs" />
-    <Compile Include="Bcf\Bcf2\Component.cs" />
-    <Compile Include="Bcf\Bcf2\Direction.cs" />
-    <Compile Include="Bcf\Bcf2\Line.cs" />
-    <Compile Include="Bcf\Bcf2\Markup.cs" />
-    <Compile Include="Bcf\Bcf2\OrthogonalCamera.cs" />
-    <Compile Include="Bcf\Bcf2\PerspectiveCamera.cs" />
-    <Compile Include="Bcf\Bcf2\Point.cs" />
-    <Compile Include="Bcf\Bcf2\Project.cs" />
-    <Compile Include="Bcf\Bcf2\Result.cs" />
-    <Compile Include="Bcf\Bcf2\ResultContainer.cs" />
-    <Compile Include="Bcf\Bcf2\Version.cs" />
-    <Compile Include="Bcf\Bcf2\ViewComment.cs" />
-    <Compile Include="Bcf\Bcf2\ViewPoint.cs" />
-    <Compile Include="Bcf\Bcf2\Visinfo.cs">
-      <SubType>code</SubType>
-    </Compile>
-    <Compile Include="Bcf\Bcf2\VisionParent.cs" />
-    <Compile Include="Bcf\Bcf2\VisualizationInfo.cs">
-      <SubType>code</SubType>
-    </Compile>
-    <Compile Include="Bcf\BcfContainer.cs" />
-    <Compile Include="Bcf\BcfFile.cs" />
-    <Compile Include="CommandSetting.cs" />
-    <Compile Include="Command.cs" />
-    <Compile Include="Data\AttachedProperties\CtrlEnterKeyDown.cs" />
-    <Compile Include="Data\AttachedProperties\NavigationService.cs" />
-    <Compile Include="Data\Commands.cs" />
-    <Compile Include="Data\Globals.cs" />
-    <Compile Include="Data\Utils\IfcGuid.cs" />
-    <Compile Include="Data\Utils\ImagingUtils.cs" />
-    <Compile Include="Data\Utils\ProgressManager.cs" />
-    <Compile Include="Data\Utils\RelativeDate.cs" />
-    <Compile Include="Data\Utils\UserSettings.cs" />
-    <Compile Include="Data\Utils\Utils.cs" />
-    <Compile Include="Data\Utils\ValueConverters.cs" />
-    <Compile Include="Data\ValueConverters\BoolStarConverter.cs" />
-    <Compile Include="Data\ValueConverters\BoolVisibConverter.cs" />
-    <Compile Include="Data\ValueConverters\DateConverter.cs" />
-    <Compile Include="Data\ValueConverters\IntPluralConverter.cs" />
-    <Compile Include="Data\ValueConverters\IntVisibConverter.cs" />
-    <Compile Include="Data\ValueConverters\MultiCommandConverter.cs" />
-    <Compile Include="Data\ValueConverters\PathToImageConv.cs" />
-    <Compile Include="Extensions\ApplicationExtension.cs" />
-    <Compile Include="Handlers\BCFExpressExternalEventHandler.cs" />
-    <Compile Include="Handlers\MdlExternalEventHandler.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Viewers\WatermarkService.cs" />
-    <Compile Include="Util\CategoryProperties.cs" />
-    <Compile Include="Util\DB.cs" />
-    <Compile Include="Util\RevitComponent.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Util\RevitUtils.cs" />
-    <Compile Include="Models\RevitModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Bcf\Bcf2\Extension.cs" />
-    <Compile Include="Themes\ButtonIcon.cs" />
-    <Compile Include="Themes\IssueListStyle.xaml.cs">
-      <DependentUpon>IssueListStyle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Themes\LabelSelectable.cs" />
-    <Compile Include="Themes\TextPlaceholder.cs" />
-    <Compile Include="Themes\ViewCommentDataTemplate.cs" />
-    <Compile Include="UI\SetUpRevit\PushButtonDataModel.cs" />
-    <Compile Include="UI\SetUpRevit\ResourceImage.cs" />
-    <Compile Include="UI\SetUpRevit\RevitPushButton.cs" />
-    <Compile Include="UI\Viewers\BCFUI.xaml.cs">
-      <DependentUpon>BCFUI.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Viewers\SettingUI.xaml.cs">
-      <DependentUpon>SettingUI.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Util\DataStorageUtil.cs" />
-    <Compile Include="Util\IfcGuidUtil.cs" />
-    <Compile Include="Util\RevitLinkProperties.cs" />
-    <Compile Include="Util\RoomProperties.cs" />
-  </ItemGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('R22'))">
+    <RevitVersion>2022</RevitVersion>
+    <DefineConstants>$(DefineConstants);R22</DefineConstants>
+    <DefineConstants>$(DefineConstants);R21_OR_GREATER;R22_OR_GREATER</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('R23'))">
+    <RevitVersion>2023</RevitVersion>
+    <DefineConstants>$(DefineConstants);R23</DefineConstants>
+    <DefineConstants>$(DefineConstants);R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('R24'))">
+    <RevitVersion>2024</RevitVersion>
+    <DefineConstants>$(DefineConstants);R24</DefineConstants>
+    <DefineConstants>$(DefineConstants);R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\Autodesk\Revit $(RevitVersion)\Revit.exe</StartProgram>
+    <StartArguments>/language ENG</StartArguments>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Helper\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="BCFExpress.addin" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\Resourses\Icons\bcf.png" />
     <EmbeddedResource Include="UI\Resourses\Icons\setting.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Themes\ButtonStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Icons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\IssueListStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ScrollViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ViewCommentDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ViewCommentListStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\VisibilityAnimations.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\Viewers\BCFUI.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Viewers\SettingUI.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Remove="AddViewModel.cs" />
+    <Compile Remove="ComponentViewModel.cs" />
+    <Compile Remove="Handlers\BCFHandler.cs" />
+    <Compile Remove="Handlers\ExtEventOpenView.cs" />
+    <Compile Remove="Util\ComponentConverter.cs" />
+    <Compile Remove="WindowViewModel.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if exist "$(ProgramData)\Autodesk\Revit\Addins\2024" copy "$(ProjectDir)*.addin" "$(ProgramData)\Autodesk\Revit\Addins\2024"
-if exist "$(ProgramData)\Autodesk\REVIT\Addins\2024" copy "$(ProjectDir)$(OutputPath)*.dll" "$(ProgramData)\Autodesk\REVIT\Addins\2024"</PostBuildEvent>
-  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="Nice3point.Revit.Toolkit" Version="$(RevitVersion).*" />
+    <PackageReference Include="Nice3point.Revit.Extensions" Version="$(RevitVersion).*" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*-*" />
+    <PackageReference Include="Nice3point.Revit.Api.AdWindows" Version="$(RevitVersion).*-*" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*-*" />
+    <PackageReference Include="Nice3point.Revit.Api.UIFramework" Version="$(RevitVersion).*-*" />
+    <PackageReference Include="Nice3point.Revit.Api.UIFrameworkServices" Version="$(RevitVersion).*-*" />
+    <PackageReference Include="System.IO.Compression" Version="4.3.0" />
+  </ItemGroup>
+
+   <Target Name="CopyFiles" AfterTargets="CoreBuild">
+        <ItemGroup>
+            <RootItem Include="$(ProjectDir)*.addin"/>
+            <AddinItem Include="$(TargetDir)**\*"/>
+        </ItemGroup>
+
+        <PropertyGroup>
+            <RootDir>bin\$(RevitVersion) $(Configuration)\</RootDir>
+            <AddinDir>$(RootDir)$(AssemblyName)\</AddinDir>
+        </PropertyGroup>
+
+        <Copy SourceFiles="@(RootItem)" DestinationFolder="$(RootDir)%(RecursiveDir)"/>
+        <Copy SourceFiles="@(AddinItem)" DestinationFolder="$(AddinDir)%(RecursiveDir)"/>
+
+        <ItemGroup>
+            <AddinFiles Include="$(RootDir)**\*.*"/>
+        </ItemGroup>
+
+        <Copy SourceFiles="@(AddinFiles)"
+              DestinationFolder="$(AppData)\Autodesk\Revit\Addins\$(RevitVersion)\%(RecursiveDir)"/>
+    </Target>
 </Project>
