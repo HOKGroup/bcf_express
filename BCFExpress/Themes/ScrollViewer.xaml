@@ -156,10 +156,10 @@
                 <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="{x:Static ScrollBar.PageDownCommand}" />
               </Track.IncreaseRepeatButton>
               <Track.Thumb>
-                <Thumb
+                                <Thumb
                   Width="8"
-                  Style="{DynamicResource VerticalThumb}"
-                  Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="VerticalGripper" />
+                  Style="{DynamicResource VerticalThumb}" />
+                                <!--Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="VerticalGripper" />-->
               </Track.Thumb>
             </Track>
           </Grid>
@@ -193,10 +193,10 @@
                     <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="{x:Static ScrollBar.PageRightCommand}" />
                   </Track.IncreaseRepeatButton>
                   <Track.Thumb>
-                    <Thumb
+                                        <Thumb
                       Height="8"
-                      Style="{DynamicResource HorizontalThumb}"
-                      Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="HorizontalGripper" />
+                      Style="{DynamicResource HorizontalThumb}" />
+                                        <!--Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="HorizontalGripper" />-->
                   </Track.Thumb>
                 </Track>
               </Grid>

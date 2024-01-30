@@ -18,7 +18,6 @@ namespace BCFExpress.Handlers
     public class BCFExpressExternalEventHandler : IExternalEventHandler
     {
         private UIApplication m_app;
-        private readonly string addinDefinitionFile;
         public Document ActiveDoc { get; set; }
         public View3D BCFOrthoView { get; set; }
         public View3D BCFPersView { get; set; }
@@ -403,14 +402,7 @@ namespace BCFExpress.Handlers
 
                         BCFUIView = FindDefaultUIView(BCFOrthoView);
 
-                        if (true)
-                        {
-                            updated = SetOrthogonalView(BCFOrthoView, visInfo2_1.PerspectiveCamera);
-                        }
-                        else
-                        {
-                            updated = SetOrthogonalView(BCFOrthoView, visInfo2_1.OrthogonalCamera);
-                        }
+                        updated = SetOrthogonalView(BCFOrthoView, visInfo2_1.PerspectiveCamera);
                     }
                     else
                     {

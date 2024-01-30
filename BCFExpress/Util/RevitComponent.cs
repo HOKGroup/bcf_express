@@ -18,9 +18,6 @@ namespace BCFExpress.Util
         private bool isSpatialElement;
         private Transform transformValue = Transform.Identity;
         private bool isLinked;
-        private string ifcProjectGuid = "";
-        //private string issueName = "";
-        //private SolidColorBrush colorBrush;
 
         public Element RvtElement { get { return rvtElement; } set { rvtElement = value; NotifyPropertyChanged("RvtElement"); } }
         public ElementId ElementId { get { return elementId; } set { elementId = value; NotifyPropertyChanged("ElementId"); } }
