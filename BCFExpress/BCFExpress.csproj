@@ -73,18 +73,21 @@
     <PackageReference Include="Nice3point.Revit.Api.UIFrameworkServices" Version="$(RevitVersion).*-*" />
     <PackageReference Include="System.IO.Compression" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
+  </ItemGroup>
   <Target Name="SignDLLs" AfterTargets="CoreBuild">
       <ItemGroup>
-          <AddinItem Include="$(TargetDir)**\BCFExpress.dll"/>
-          <CodeSigningScript Include="$(SolutionDir)_postBuild\codeSigning.ps1"/>
+          <AddinItem Include="$(TargetDir)**\BCFExpress.dll" />
+          <CodeSigningScript Include="$(SolutionDir)_postBuild\codeSigning.ps1" />
       </ItemGroup>
       <Exec Command="powershell.exe &quot;@(CodeSigningScript)&quot; &quot;'@(AddinItem)'&quot;" />
   </Target>
 
    <Target Name="CopyFiles" AfterTargets="CoreBuild">
         <ItemGroup>
-            <RootItem Include="$(ProjectDir)*.addin"/>
-            <AddinItem Include="$(TargetDir)**\*"/>
+            <RootItem Include="$(ProjectDir)*.addin" />
+            <AddinItem Include="$(TargetDir)**\*" />
         </ItemGroup>
 
         <PropertyGroup>
@@ -92,14 +95,13 @@
             <AddinDir>$(RootDir)$(AssemblyName)\</AddinDir>
         </PropertyGroup>
 
-        <Copy SourceFiles="@(RootItem)" DestinationFolder="$(RootDir)%(RecursiveDir)"/>
-        <Copy SourceFiles="@(AddinItem)" DestinationFolder="$(AddinDir)%(RecursiveDir)"/>
+        <Copy SourceFiles="@(RootItem)" DestinationFolder="$(RootDir)%(RecursiveDir)" />
+        <Copy SourceFiles="@(AddinItem)" DestinationFolder="$(AddinDir)%(RecursiveDir)" />
 
         <ItemGroup>
-            <AddinFiles Include="$(RootDir)**\*.*"/>
+            <AddinFiles Include="$(RootDir)**\*.*" />
         </ItemGroup>
 
-        <Copy SourceFiles="@(AddinFiles)"
-              DestinationFolder="$(AppData)\Autodesk\Revit\Addins\$(RevitVersion)\%(RecursiveDir)"/>
+        <Copy SourceFiles="@(AddinFiles)" DestinationFolder="$(AppData)\Autodesk\Revit\Addins\$(RevitVersion)\%(RecursiveDir)" />
     </Target>
 </Project>
