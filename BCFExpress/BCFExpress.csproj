@@ -66,8 +66,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
-    <PackageReference Include="Nice3point.Revit.Toolkit" Version="$(RevitVersion).*" />
-    <PackageReference Include="Nice3point.Revit.Extensions" Version="$(RevitVersion).*" />
     <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*-*" />
     <PackageReference Include="Nice3point.Revit.Api.AdWindows" Version="$(RevitVersion).*-*" />
     <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*-*" />
@@ -75,6 +73,13 @@
     <PackageReference Include="Nice3point.Revit.Api.UIFrameworkServices" Version="$(RevitVersion).*-*" />
     <PackageReference Include="System.IO.Compression" Version="4.3.0" />
   </ItemGroup>
+  <Target Name="SignDLLs" AfterTargets="CoreBuild">
+      <ItemGroup>
+          <AddinItem Include="$(TargetDir)**\BCFExpress.dll"/>
+          <CodeSigningScript Include="$(SolutionDir)_postBuild\codeSigning.ps1"/>
+      </ItemGroup>
+      <Exec Command="powershell.exe &quot;@(CodeSigningScript)&quot; &quot;'@(AddinItem)'&quot;" />
+  </Target>
 
    <Target Name="CopyFiles" AfterTargets="CoreBuild">
         <ItemGroup>
