@@ -1,0 +1,16 @@
+name: Nuke
+on:
+  pull_request:
+  push:
+
+jobs:
+  windows:
+    name: windows-2022
+    runs-on: windows-2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run Nuke Build
+        run: ./.nuke/build.cmd Compile

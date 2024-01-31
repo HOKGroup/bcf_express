@@ -62,11 +62,9 @@ namespace BCFExpress.UI.Viewers
         public List<Result> results { get; set; }
         private static bool IsWindowOpen = false;
         private ObservableCollection<ObservableCollection<CategoryView>> CategoriesViews;
-        int totalCount;
 
         public BCFUI(UIApplication _uiapp, ExternalEvent ev, BCFExpressExternalEventHandler bCFExpressExternalEventHandler)
         {
-            totalCount = 0;
             InitializeComponent();
             listOfMarkupElements = new ObservableCollection<Tuple<string, ObservableCollection<Element>>>();
             listOfMarkupComponentElements = new ObservableCollection<Tuple<string, ObservableCollection<RevitComponent>>>();
@@ -94,7 +92,6 @@ namespace BCFExpress.UI.Viewers
                 _document = _uiapp.ActiveUIDocument.Document;
                 RvtElements = new List<Element>();
                 RvtComponents = new List<RevitComponent>();
-                totalCount = 0;
 
                 DB.SelectedComponent = null;
                 DB.SelectedCategories = null;
@@ -237,8 +234,6 @@ namespace BCFExpress.UI.Viewers
                 _index = 1;
                 //UpdateBackgroundView();
                 Indexlbl.Content = _index;
-                int count = 0;
-
 
                 var selectedMarkup = (Markup)IssueList.SelectedItem;
                 if (selectedMarkup != null)
@@ -376,7 +371,7 @@ namespace BCFExpress.UI.Viewers
         ///The snippet suggests the code's main function is to gather information about model elements and components associated with specific issues/markups. It's possible that the method could be further refactored and optimized based on specific use cases and requirements.
         /// </summary>
 
-        public async void GetElement()
+        public void GetElement()
         {
 
             try

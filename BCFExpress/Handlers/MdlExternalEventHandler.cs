@@ -78,7 +78,7 @@ namespace BCFExpress.Handlers
                 MdlExternalEventHandler.SetForegroundWindow(foregroundWindow);
                 int num = (int)this.ExternalEvent.Raise();
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 TaskDialog.Show("error", "Error handling external event run of transaction name: " + transactionName);
                 // new BIMAIException("Error handling external event run of transaction name: " + transactionName, ex).MsgError();
@@ -98,7 +98,7 @@ namespace BCFExpress.Handlers
                 MdlExternalEventHandler.SetForegroundWindow(foregroundWindow);
                 int num = (int)this.ExternalEvent.Raise();
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 TaskDialog.Show("error", string.Format("Error handling external event run\nAction: {0}\nCallback: {1}\nTransaction name: {2}", (object)runMethod, (object)this.CallBackFunction, (object)this._transactionName));
                 // new BIMAIException(string.Format("Error handling external event run\nAction: {0}\nCallback: {1}\nTransaction name: {2}", (object)runMethod, (object)this.CallBackFunction, (object)this._transactionName), ex).MsgError();
@@ -118,7 +118,7 @@ namespace BCFExpress.Handlers
                 MdlExternalEventHandler.SetForegroundWindow(foregroundWindow);
                 int num = (int)this.ExternalEvent.Raise();
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 TaskDialog.Show("error", string.Format("Error handling external event run\nAction: {0}\nTransaction name: {1}", (object)runMethod, (object)this._transactionName));
 
