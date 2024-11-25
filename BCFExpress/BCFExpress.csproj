@@ -101,5 +101,4 @@
       <AddinFiles Include="$(RootDir)**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(AddinFiles)" DestinationFolder="$(AppData)\Autodesk\Revit\Addins\$(RevitVersion)\%(RecursiveDir)" />
-  </Target>
 </Project>
