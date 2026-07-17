@@ -81,7 +81,7 @@
   </ItemGroup>
   <Target Name="SignDLLs" AfterTargets="CoreBuild">
     <ItemGroup>
-      <AddinItem Include="$(TargetDir)**\BCFExpress.dll" />
+      <AddinItem Include="$(TargetDir)\BCFExpress.dll" />
       <CodeSigningScript Include="$(SolutionDir)_postBuild\codeSigning.ps1" />
     </ItemGroup>
     <Exec Command="powershell.exe &quot;@(CodeSigningScript)&quot; &quot;'@(AddinItem)'&quot;" />

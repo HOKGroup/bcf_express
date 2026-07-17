@@ -29,7 +29,14 @@ namespace BCFExpress
                 AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolve);
                 app.ViewActivated += App_ViewActivated;
 
+                try
+                {
                 app.CreateRibbonTab(tabName);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
 
                 var panel = app.GetOrCreateRibbonPanel(tabName, "BCF Express");
 

@@ -26,7 +26,8 @@ sealed partial class Build
             {"Release R22", "2022.0.2"},
             {"Release R23", "2023.0.2"},
             {"Release R24", "2024.0.2"},
-            {"Release R25", "2025.0.2"}
+            {"Release R25", "2025.0.2"},
+            {"Installer", "1"}
         };
     }
 }
